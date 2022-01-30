@@ -5,18 +5,19 @@
 class CursorPos
 {
 public:
-    CursorPos(GLFWwindow* window, const float& xPos, const float& yPos);
+    CursorPos();
+    CursorPos(/*GLFWwindow* window,*/ const float& xPos, const float& yPos);
 
-    const GLFWwindow* getOwnerWindow();
+    //const GLFWwindow* getOwnerWindow();
     float getX();
     void setX(float xpos);
     float getY();
     void setY(float ypos);
 
-    void setOwnerWindow(GLFWwindow* win);
+    //void setOwnerWindow(GLFWwindow* win);
 
 private:
-    GLFWwindow* mpWindow;
+    //GLFWwindow* mpWindow;
     float mXPos;
     float mYPos;
 };

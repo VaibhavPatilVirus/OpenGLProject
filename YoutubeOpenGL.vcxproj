@@ -153,6 +153,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>VendorAPIsPCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -180,12 +181,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="IDrawable.cpp" />
+    <ClCompile Include="IEvent.cpp" />
     <ClCompile Include="ISelectable.cpp" />
     <ClCompile Include="IWindow.cpp" />
+    <ClCompile Include="KeyEvent.cpp" />
+    <ClCompile Include="KeyPressedEvent.cpp" />
+    <ClCompile Include="KeyReleasedEvent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MouseButtonPressedEvent.cpp" />
+    <ClCompile Include="MouseButtonReleasedEvent.cpp" />
+    <ClCompile Include="MouseDrag.cpp" />
+    <ClCompile Include="MouseEvent.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="ScrollOffset.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionSettings.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
@@ -216,12 +226,21 @@
     <ClInclude Include="CursorPosListener.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="IEvent.h" />
     <ClInclude Include="ISelectable.h" />
     <ClInclude Include="IWindow.h" />
+    <ClInclude Include="KeyEvent.h" />
+    <ClInclude Include="KeyPressedEvent.h" />
+    <ClInclude Include="KeyReleasedEvent.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MouseButtonPressedEvent.h" />
+    <ClInclude Include="MouseButtonReleasedEvent.h" />
+    <ClInclude Include="MouseDrag.h" />
+    <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="ScrollOffset.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SessionSettings.h" />
     <ClInclude Include="ShaderClass.h" />

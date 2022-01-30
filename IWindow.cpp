@@ -4,6 +4,8 @@
 #include "Plane.h"
 #include "Cube.h"
 #include "CursorPos.h"
+#include "ScrollOffset.h"
+#include <MouseEvent.h>
 
 void IWindow::generateWindowId()
 {
@@ -108,7 +110,9 @@ void IWindow::render()
 	glEnable(GL_DEPTH_TEST);
 
 	mpCamera = new Camera(mWidth, mHeight, glm::vec3(0.0f, 0.0f, -2.0f));
-	glfwSetCursorPosCallback(mpWindow, IWindow::callbackCursorPos);
+	//glfwSetMouseButtonCallback(mpWindow, IWindow::callbackMouseButton);
+	glfwSetCursorPosCallback(mpWindow, IWindow::cursorPosCallback);
+	glfwSetScrollCallback(mpWindow, IWindow::callbackScroll);
 	//Main while loop
 	GLfloat rot = 0;
 	Circle circle(1);
@@ -127,7 +131,7 @@ void IWindow::render()
 		shaderProgram.Activate();
 
 		mpCamera->matrix(shaderProgram, "camMatrix");
-		mpCamera->inputs(mpWindow);
+		//mpCamera->inputs(mpWindow);
 
 		//glUniform1f(uniId, 3.0f);
 		//glBindTexture(GL_TEXTURE_2D, texture);
@@ -144,9 +148,27 @@ void IWindow::render()
 	//glDeleteTextures(1, &texture);
 }
 
-void IWindow::callbackCursorPos(GLFWwindow* window, double xpos, double ypos)
+//void IWindow::callbackMouseButton(GLFWwindow* window, int button, int action, int mods)
+//{
+//	//if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+//	MouseButtonEvent mouseEvent(button, action);
+//	IWindow* win = IWindow::getUserWindowPointer(window);
+//	if (win)
+//		win->notifyMouseButtonEvent(mouseEvent);
+//
+//}
+
+void IWindow::callbackScroll(GLFWwindow* window, double xoffset, double yoffset)
 {
-	CursorPos curentCursorPos(window, xpos, ypos);
+	ScrollOffset curentCursorPos(xoffset, yoffset);
+	IWindow* win = IWindow::getUserWindowPointer(window);
+	if (win)
+		win->notifyScroll(curentCursorPos);
+}
+
+void IWindow::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	CursorPos curentCursorPos( /* window, */ xpos, ypos);
 	IWindow* win = IWindow::getUserWindowPointer(window);
 	if (win)
 		win->setCursorPos(xpos, ypos);
@@ -158,8 +180,24 @@ Camera* IWindow::getCamera() { return nullptr; }
 
 void IWindow::setCursorPos(const double& xpos, const double& ypos)
 {
-
+	mCursorPos.setX(xpos);
+	mCursorPos.setY(ypos);
 }
+
+void IWindow::notifyScroll(ScrollOffset& offset)
+{
+	mpCamera->moveForwardOrBackward(offset.mYOffset);
+}
+
+//void IWindow::notifyMouseButtonEvent(const MouseButtonEvent& mouseEvent)
+//{
+//	if (mouseEvent.mButton == GLFW_MOUSE_BUTTON_RIGHT && mouseEvent.mAction == GLFW_PRESS)
+//	{
+//		MouseButtonEvent drag();
+//	}
+//	
+//
+//}
 
 IWindow* IWindow::getUserWindowPointer(GLFWwindow* win)
 {
@@ -168,4 +206,20 @@ IWindow* IWindow::getUserWindowPointer(GLFWwindow* win)
 		iWin = (IWindow*)glfwGetWindowUserPointer(win);
 
 	return iWin;
+}
+
+void Window::callbackScroll(GLFWwindow* window, double xoffset, double yoffset)
+{
+	ScrollOffset curentCursorPos(xoffset, yoffset);
+	IWindow* win = IWindow::getUserWindowPointer(window);
+	if (win)
+		win->notifyScroll(curentCursorPos);
+}
+
+void Window::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	CursorPos curentCursorPos( /* window, */ xpos, ypos);
+	IWindow* win = IWindow::getUserWindowPointer(window);
+	if (win)
+		win->setCursorPos(xpos, ypos);
 }

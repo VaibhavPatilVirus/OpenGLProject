@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include<glad/glad.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
 #include <glm/glm.hpp>
@@ -12,5 +12,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <thread>
+#include <exception>
+#include <memory>
 
 #include "Logger/ConsoleLogger.h"

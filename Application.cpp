@@ -3,7 +3,8 @@
 
 Application::Application()
 {
-	mWindow = std::shared_ptr<MainWindow>(new MainWindow(800, 800));
+	mWindow = nullptr;
+	doRun = true;
 }
 
 Application::~Application()
@@ -17,18 +18,29 @@ mAppSettings = other.mAppSettings;
 mWindow = std::move(other.mWindow);
 }*/
 
-bool Application::window1()
+void Application::Init()
 {
-	bool es = false;
-	//Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	mWindow->init();
-	mWindow->show();
-	return es;
+	WindowData winData;
+	winData.size.mWidth = 800;
+	winData.size.mHeight = 800;
+	winData.mTitle = "Application Window";
+	mWindow = std::shared_ptr<Window>(Window::createWindow(winData));
 }
 
 bool Application::start()
 {
 	bool es = false;
-	window1();
+	Init();
+	mWindow->makeCurrentContext();
+	mWindow->enableDepthTest();
+
+	while (doRun)
+	{
+		
+		std::mutex m;
+		m.lock();
+		mWindow->draw();
+		m.unlock();
+	}
 	return es;
 }

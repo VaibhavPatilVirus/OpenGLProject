@@ -53,7 +53,7 @@ void Plane::createMesh() {
 			vertex.push_back(glm::vec3(x * stepsInXDir, y * stepsInYDir, 0.0f) + TranslateVec); //Tranlate all points(whole plane) to make (0,0) as center of polygon
 																								//++index;
 		}
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 
 	for (int y = 0; y < mResolution; y++)
