@@ -76,17 +76,15 @@
 
 int main()
 {
+    Session session;
+    Application App;
+    //Application App1;
+    //Application App2;
+    session.addApplication(App);
+    //session.addApplication(App1);
+    //session.addApplication(App2);
+    session.start();
+    //session.shutdown();
 
-	Session session;
-	Application App;
-	Application App1;
-	Application App2;
-	session.addApplication(App);
-	session.addApplication(App1);
-	session.addApplication(App2);
-	session.start();
-	session.shutdown();
-
-
-	return 0;
+    return 0;
 }

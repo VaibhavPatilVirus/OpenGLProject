@@ -1,6 +1,7 @@
 #include "VendorAPIsPCH.h"
 #include "Session.h"
 
+
 Session::Session()
 {
 	//Initilize GLFW library for use

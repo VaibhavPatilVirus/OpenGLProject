@@ -27,6 +27,11 @@ void Application::Init()
 	mWindow = std::shared_ptr<Window>(Window::createWindow(winData));
 }
 
+void Application::terminate()
+{
+	
+}
+
 bool Application::start()
 {
 	bool es = false;
@@ -34,7 +39,7 @@ bool Application::start()
 	mWindow->makeCurrentContext();
 	mWindow->enableDepthTest();
 
-	while (doRun)
+	while (mWindow->isRunning())
 	{
 		
 		std::mutex m;
@@ -42,5 +47,6 @@ bool Application::start()
 		mWindow->draw();
 		m.unlock();
 	}
+	terminate();
 	return es;
 }

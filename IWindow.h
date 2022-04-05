@@ -152,9 +152,14 @@ public:
         glEnable(GL_DEPTH_TEST);
     }
 
+    bool isRunning()
+    {
+        return !glfwWindowShouldClose(mGLFWwindow);
+    }
+
     void draw()
     {
-        glfwWindowShouldClose(mGLFWwindow);
+        
         clearColor();
         clearBufferBits();
         Shader shaderProgram("Default.vert", "default.frag");
@@ -169,6 +174,9 @@ public:
         plane2.createMesh();
         plane2.rotate(90.0f, glm::vec3(0.0f, 1.0f, 0.0f));
         cube.draw();
+        plane.draw();
+        plane2.draw();
+        circle.draw();
         swapBuffers();
         pollEvents();
     }

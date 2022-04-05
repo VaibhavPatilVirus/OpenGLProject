@@ -17,7 +17,6 @@ public:
 	{
 		mAppSettings = app.mAppSettings;
 		mWindow = app.mWindow;
-		//mWindow = std::unique_ptr<Window>();
 	};
 	virtual ~Application();
 	/*Application(const Application& other)
@@ -27,6 +26,7 @@ public:
 	}*/
 
 	bool start();
+	void terminate();
 	void Init();
 };
 
